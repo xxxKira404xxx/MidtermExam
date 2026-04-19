@@ -129,6 +129,6 @@ For example, with a P1,000 budget, any single expense above P250 triggers the al
 ---
 
 ## Author
-
+Bandong, John Matthew C.
 BSIT 1A — Software Engineering Student
 Final Midterm Examination
