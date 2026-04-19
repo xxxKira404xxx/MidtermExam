@@ -1,7 +1,6 @@
 ﻿# FINAL Midterm Exam Solution - BSIT 1A Software Engineering
-# Using f-strings but NO .2f formatting.
 
-# 1. SETUP AND INPUT WITH ERROR HANDLING
+# 1.INPUT WITH ERROR HANDLING
 while True:
     name_input = input("Student name: ")
     if name_input.strip() != "":
@@ -93,7 +92,7 @@ if remaining_bal >= 0:
 else:
     budget_status = "Overspent! Reduce spending."
 
-# 4. FINAL REPORT (Using f-strings but NO .2f formatting)
+# 4. FINAL REPORT 
 print("=" * 54)
 print(f"     {student_name.upper()} -- WEEKLY EXPENSE LOG")
 print("=" * 54)
