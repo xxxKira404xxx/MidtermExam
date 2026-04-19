@@ -5,7 +5,7 @@
 while True:
     studentNameInput = input("Student name: ")
     if studentNameInput.replace(" ", "").isalpha():
-        studentName = studentNameInput.strip().title()  # Fixed: was 'inputed_name'
+        studentName = studentNameInput.strip().title()
         break
     print("Please try again! Any special character or numbers are not allowed.")
 
@@ -52,7 +52,7 @@ for i in range(1, 5):
     print(f"--- EXPENSE {i} ---")
 
     while True:
-        selectCategory = input("Category (1-5, or 0 to skip): ")
+        selectCategory = input("Category (0 to skip): ")
         if selectCategory.isdigit():
             categoryChoice = int(selectCategory)
             if 0 <= categoryChoice <= 5:
@@ -68,10 +68,13 @@ for i in range(1, 5):
 
     while True:
         descriptionCategory = input("Description: ")
-        if descriptionCategory.strip() != "":
+        if descriptionCategory.strip() == "":
+            print("Error: Description is required.")
+        elif descriptionCategory.strip().replace(" ", "").isdigit():  
+            print("Error: Description cannot be numbers only.")        #
+        else:
             description = descriptionCategory.strip()
             break
-        print("Error: Description is required.")
 
     while True:
         amountInput = input("Amount: ")
@@ -100,7 +103,7 @@ else:
 
 # 4. PRINTING THE EXPENSE LOG
 print("=" * 54)
-print(f"     {studentName.title()} -- WEEKLY EXPENSE LOG")  # Fixed: now uses 'studentName'
+print(f"     {studentName.title()} -- WEEKLY EXPENSE LOG")
 print("=" * 54)
 print(f"  Weekly Budget  : P{setWeeklyBudget}")
 
