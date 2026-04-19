@@ -26,7 +26,7 @@ A beginner-friendly Python console application that helps students track and sum
 ## How to Run
 
 ```bash
-python expense_logger.py
+python MidtermExam.py
 ```
 
 ---
