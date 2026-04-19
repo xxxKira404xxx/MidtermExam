@@ -1,18 +1,20 @@
-﻿# FINAL Midterm Exam Solution - BSIT 1A Software Engineering
+# Bandong John Matthew C.
+# BSIT SE 1A
 
-# 1.INPUT WITH ERROR HANDLING
+# 1. INPUT WITH ERROR HANDLING
 while True:
-    name_input = input("Student name: ")
-    if name_input.strip() != "":
-        student_name = name_input.strip().title()
+    studentNameInput = input("Student name: ")
+    if studentNameInput.replace(" ", "").isalpha():
+        inputed_name = studentNameInput.strip().title()
         break
-    print("Error: Student name cannot be empty.")
+    print("Please try again! Any special character or numbers are not allowed.")
+
 
 while True:
-    budget_raw = input("Weekly budget: ")
-    if budget_raw.replace(".", "", 1).isdigit():
-        weekly_budget = float(budget_raw)
-        if weekly_budget > 0:
+    weeklyBudget = input("Weekly budget: ")
+    if weeklyBudget.replace(".", "", 1).isdigit():
+        setWeeklyBudget = float(weeklyBudget)
+        if setWeeklyBudget > 0:
             break
         else:
             print("Error: Budget must be greater than zero.")
@@ -37,83 +39,83 @@ for i in range(len(categories)):
 
 print("=" * 42 + "\n")
 
-expenses_list = []
-total_spent = 0.0
+expensesList = []
+totalSpent = 0.0
 
 # 2. EXPENSE ENTRY LOOP
 for i in range(1, 5):
     print(f"--- EXPENSE {i} ---")
     
     while True:
-        cat_in = input("Category (1-5, or 0 to skip): ")
-        if cat_in.isdigit():
-            cat_choice = int(cat_in)
-            if 0 <= cat_choice <= 5:
+        selectCategory = input("Category (1-5, or 0 to skip): ")
+        if selectCategory.isdigit():
+            categoryChoice = int(selectCategory)
+            if 0 <= categoryChoice <= 5:
                 break
             else:
                 print("Error: Selection must be between 0 and 5.")
         else:
             print("Error: Enter a valid numeric category.")
             
-    if cat_choice == 0:
+    if categoryChoice == 0:
         print(f"Expense slot {i} skipped.\n")
         continue
 
     while True:
-        desc_in = input("Description: ")
-        if desc_in.strip() != "":
-            description = desc_in.strip()
+        descriptionCategory = input("Description: ")
+        if descriptionCategory.strip() != "":
+            description = descriptionCategory.strip()
             break
         print("Error: Description is required.")
 
     while True:
-        amt_raw = input("Amount: ")
-        if amt_raw.replace(".", "", 1).isdigit():
-            amount = float(amt_raw)
-            if amount >= 0:
+        amountInput = input("Amount: ")
+        if amountInput.replace(".", "", 1).isdigit():
+            setAmount = float(amountInput)
+            if setAmount >= 0:
                 break
             else:
                 print("Error: Amount cannot be negative.")
         else:
             print("Error: Enter a valid number for the amount.")
 
-    is_high = amount > (weekly_budget * 0.25)
-    category_name = categories[cat_choice - 1]
-    expenses_list.append([i, category_name, description, amount, is_high])
+    is_high = setAmount > (setWeeklyBudget * 0.25)
+    category_name = categories[categoryChoice - 1]
+    expensesList.append([i, category_name, description, setAmount, is_high])
     
-    total_spent = total_spent + amount
+    totalSpent = totalSpent + setAmount
     print("")
 
-# 3. CALCULATIONS AND STATUS
-remaining_bal = weekly_budget - total_spent
+# 3. CALCULATIONS
+remainingBalance = setWeeklyBudget - totalSpent
 
-if remaining_bal >= 0:
-    budget_status = "Budget OK! Keep it up."
+if remainingBalance >= 0:
+    budgetStatus = "Budget OK! Keep it up."
 else:
-    budget_status = "Overspent! Reduce spending."
+    budgetStatus = "Overspent! Reduce spending."
 
-# 4. FINAL REPORT 
+# 4. PRINTING THE EXPENSE LOG
 print("=" * 54)
-print(f"     {student_name.upper()} -- WEEKLY EXPENSE LOG")
+print(f"     {studentName.title()} -- WEEKLY EXPENSE LOG")
 print("=" * 54)
-print(f"  Weekly Budget  : P{weekly_budget}")
+print(f"  Weekly Budget  : P{setWeeklyBudget}")
 
-for item in expenses_list:
-    num = item[0]
-    cat = item[1]
-    desc = item[2]
-    amt = item[3]
-    is_high = item[4]
+for item in expensesList:
+    number = item[0]
+    category = item[1]
+    description = item[2]
+    amount = item[3]
+    isHighAmount = item[4]
     
     alert = ""
-    if is_high:
+    if isHighAmount:
         alert = " ! High Expense Alert!"
         
-    print(f"  [{num}] {cat}")
-    print(f"      {desc}      P{amt}{alert}")
+    print(f"  [{number}] {category}")
+    print(f"      {description}      P{amount}{alert}")
 
 print("-" * 54)
-print(f"  Total Spent    : P{total_spent}")
-print(f"  Remaining      : P{remaining_bal}")
-print(f"  Status         : {budget_status}")
+print(f"  Total Spent    : P{totalSpent}")
+print(f"  Remaining      : P{remainingBalance}")
+print(f"  Status         : {budgetStatus}")
 print("=" * 54)
