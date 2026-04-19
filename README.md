@@ -12,13 +12,12 @@ A beginner-friendly Python console application that helps students track and sum
 - Up to 4 expense entries per session, with the option to skip any slot
 - Automatic **High Expense Alert** flag when a single expense exceeds 25% of the weekly budget
 - Clean formatted report showing itemized expenses, total spent, remaining balance, and budget status
-- Uses **f-strings** for output formatting (no `.2f` decimal formatting)
 
 ---
 
 ## Requirements
 
-- Python 3.6 or higher (f-string support required)
+- Python 3.6 or higher
 - No external libraries needed — uses only Python built-ins
 
 ---
