@@ -5,10 +5,9 @@
 while True:
     studentNameInput = input("Student name: ")
     if studentNameInput.replace(" ", "").isalpha():
-        inputed_name = studentNameInput.strip().title()
+        studentName = studentNameInput.strip().title()  # Fixed: was 'inputed_name'
         break
     print("Please try again! Any special character or numbers are not allowed.")
-
 
 while True:
     weeklyBudget = input("Weekly budget: ")
@@ -30,14 +29,20 @@ categories = [
     "Entertainment"
 ]
 
-print("\n" + "=" * 42)
-print("   WEEKLY EXPENSE -- CATEGORIES")
-print("=" * 42)
+category_examples = [
+    "Lunch, snacks, coffee",
+    "Bus, jeepney, ride-share",
+    "Load, data plan, WiFi top-up",
+    "Notebook, pen, bond paper",
+    "Games, movies, hangout"
+]
 
+print("\n" + "=" * 55)
+print("         WEEKLY EXPENSE -- CATEGORIES")
+print("=" * 55)
 for i in range(len(categories)):
-    print(f" {i + 1}. {categories[i]}")
-
-print("=" * 42 + "\n")
+    print(f" {i + 1}. {categories[i]:<20} [e.g. {category_examples[i]}]")
+print("=" * 55 + "\n")
 
 expensesList = []
 totalSpent = 0.0
@@ -45,7 +50,7 @@ totalSpent = 0.0
 # 2. EXPENSE ENTRY LOOP
 for i in range(1, 5):
     print(f"--- EXPENSE {i} ---")
-    
+
     while True:
         selectCategory = input("Category (1-5, or 0 to skip): ")
         if selectCategory.isdigit():
@@ -56,7 +61,7 @@ for i in range(1, 5):
                 print("Error: Selection must be between 0 and 5.")
         else:
             print("Error: Enter a valid numeric category.")
-            
+
     if categoryChoice == 0:
         print(f"Expense slot {i} skipped.\n")
         continue
@@ -82,13 +87,12 @@ for i in range(1, 5):
     is_high = setAmount > (setWeeklyBudget * 0.25)
     category_name = categories[categoryChoice - 1]
     expensesList.append([i, category_name, description, setAmount, is_high])
-    
+
     totalSpent = totalSpent + setAmount
     print("")
 
 # 3. CALCULATIONS
 remainingBalance = setWeeklyBudget - totalSpent
-
 if remainingBalance >= 0:
     budgetStatus = "Budget OK! Keep it up."
 else:
@@ -96,7 +100,7 @@ else:
 
 # 4. PRINTING THE EXPENSE LOG
 print("=" * 54)
-print(f"     {studentName.title()} -- WEEKLY EXPENSE LOG")
+print(f"     {studentName.title()} -- WEEKLY EXPENSE LOG")  # Fixed: now uses 'studentName'
 print("=" * 54)
 print(f"  Weekly Budget  : P{setWeeklyBudget}")
 
@@ -106,11 +110,11 @@ for item in expensesList:
     description = item[2]
     amount = item[3]
     isHighAmount = item[4]
-    
+
     alert = ""
     if isHighAmount:
         alert = " ! High Expense Alert!"
-        
+
     print(f"  [{number}] {category}")
     print(f"      {description}      P{amount}{alert}")
 
